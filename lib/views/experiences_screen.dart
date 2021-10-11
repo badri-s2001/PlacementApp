@@ -43,7 +43,9 @@ class _ExperiencesScreenState extends State<ExperiencesScreen> {
 
     _loaded = true;
 
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
@@ -55,10 +57,13 @@ class _ExperiencesScreenState extends State<ExperiencesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: const Text(
           "Experiences",
         ),
+        backgroundColor: Colors.black,
+        centerTitle: true,
       ),
       body: _loaded
           ? RefreshIndicator(

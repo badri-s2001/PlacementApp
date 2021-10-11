@@ -30,6 +30,40 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+
+
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+
+  <!-- Add for Firebase Storage: https://pub.dev/packages/firebase_storage -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-storage.js"></script>
+
+  <!-- Add for Cloud Firestore: https://pub.dev/packages/cloud_firestore -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+
+  <!-- Add for Firebase Auth: https://pub.dev/packages/firebase_auth -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+
+  <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyDtHQQlCsxzWoVXtpZM5yBV9YfCjMPTpTY",
+        authDomain: "placementapp-23a5c.firebaseapp.com",
+        projectId: "placementapp-23a5c",
+        storageBucket: "placementapp-23a5c.appspot.com",
+        messagingSenderId: "382747291516",
+        appId: "1:382747291516:web:a8dd8efa37374c0e9e3ef9"
+      };
+
+
+      firebase.initializeApp(firebaseConfig);
+  </script>
+
+
+
+
+
+
+
+
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->

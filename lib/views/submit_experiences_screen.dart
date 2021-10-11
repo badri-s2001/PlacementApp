@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert' as convert;
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:placement_app/components/rounded_button.dart';
+
+import '../constants.dart';
 
 class SubmitExperiencesScreen extends StatefulWidget {
   const SubmitExperiencesScreen({Key? key}) : super(key: key);
@@ -11,6 +14,7 @@ class SubmitExperiencesScreen extends StatefulWidget {
 }
 
 class _SubmitExperiencesScreenState extends State<SubmitExperiencesScreen> {
+  bool showSpinner = false;
   final _formKey = GlobalKey<FormState>();
 
   TextEditingController nameController = TextEditingController();
@@ -19,7 +23,7 @@ class _SubmitExperiencesScreenState extends State<SubmitExperiencesScreen> {
   TextEditingController yearController = TextEditingController();
   TextEditingController storyController = TextEditingController();
 
-  Future<void> _submitForm() async {
+  Future<bool> _submitForm() async {
     if (_formKey.currentState!.validate()) {
       Map<String, String> body = {
         'name': nameController.text,
@@ -35,108 +39,148 @@ class _SubmitExperiencesScreenState extends State<SubmitExperiencesScreen> {
         body: body,
       );
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            "Submitted",
-            textAlign: TextAlign.center,
-          ),
-          backgroundColor: Colors.green,
-        ),
-      );
-
-      Navigator.pop(context);
+      return true;
     }
+
+    return false;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: const Text(
-          "Form",
+          "Submit Experience",
         ),
+        centerTitle: true,
       ),
-      body: Form(
-        key: _formKey,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              TextFormField(
-                controller: nameController,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Enter Valid name";
-                  } else {
-                    return null;
-                  }
-                },
-                decoration: const InputDecoration(
-                  hintText: "Name",
-                ),
+      body: ModalProgressHUD(
+        inAsyncCall: showSpinner,
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  TextFormField(
+                    keyboardType: TextInputType.text,
+                    controller: nameController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Enter Valid name";
+                      } else {
+                        return null;
+                      }
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                      hintText: "Name",
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  TextFormField(
+                    controller: companyNameController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Enter Valid company";
+                      } else {
+                        return null;
+                      }
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                      hintText: "Company Name",
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    controller: packageController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Enter Valid package";
+                      } else {
+                        return null;
+                      }
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                      hintText: "Package (in LPA)",
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    controller: yearController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Enter Valid Year";
+                      } else {
+                        return null;
+                      }
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                      hintText: "Year",
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  TextFormField(
+                    minLines: 10,
+                    maxLines: 20,
+                    controller: storyController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Enter Valid Story";
+                      } else {
+                        return null;
+                      }
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                      hintText: "Story",
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  RoundedButton(
+                    buttonTitle: "Submit",
+                    color: Colors.blue,
+                    onPressed: () async {
+                      setState(() {
+                        showSpinner = true;
+                      });
+                      bool status = await _submitForm();
+                      setState(() {
+                        showSpinner = false;
+                      });
+
+                      if (status == true) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              "Submitted",
+                              textAlign: TextAlign.center,
+                            ),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
+                        Navigator.pop(context);
+                      }
+                    },
+                  ),
+                ],
               ),
-              TextFormField(
-                controller: companyNameController,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Enter Valid company";
-                  } else {
-                    return null;
-                  }
-                },
-                decoration: const InputDecoration(
-                  hintText: "Company Name",
-                ),
-              ),
-              TextFormField(
-                controller: packageController,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Enter Valid package";
-                  } else {
-                    return null;
-                  }
-                },
-                decoration: const InputDecoration(
-                  hintText: "Package",
-                ),
-              ),
-              TextFormField(
-                controller: yearController,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Enter Valid Year";
-                  } else {
-                    return null;
-                  }
-                },
-                decoration: const InputDecoration(
-                  hintText: "Year",
-                ),
-              ),
-              TextFormField(
-                controller: storyController,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Enter Valid Story";
-                  } else {
-                    return null;
-                  }
-                },
-                decoration: const InputDecoration(
-                  hintText: "Story",
-                ),
-              ),
-              ElevatedButton(
-                child: const Text(
-                  "Submit",
-                ),
-                onPressed: () {
-                  _submitForm();
-                },
-              ),
-            ],
+            ),
           ),
         ),
       ),
