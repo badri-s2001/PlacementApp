@@ -35,36 +35,21 @@ class HomeScreen extends StatelessWidget {
               buttonTitle: "Log In",
               color: Colors.lightBlueAccent,
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LoginScreen(),
-                  ),
-                );
+                Navigator.pushNamed(context, '/login');
               },
             ),
             RoundedButton(
               buttonTitle: "Register",
               color: Colors.blueAccent,
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const RegisterScreen(),
-                  ),
-                );
+                Navigator.pushNamed(context, '/register');
               },
             ),
             RoundedButton(
               buttonTitle: "Experiences",
               color: Colors.green,
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ExperiencesScreen(),
-                  ),
-                );
+                Navigator.pushNamed(context, '/experiences');
               },
             ),
           ],

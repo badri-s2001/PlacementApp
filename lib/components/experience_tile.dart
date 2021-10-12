@@ -8,12 +8,13 @@ class ExperienceTile extends StatelessWidget {
   final String year;
   final String story;
 
-  const ExperienceTile(
-      {required this.name,
-      required this.companyName,
-      required this.package,
-      required this.year,
-      required this.story});
+  const ExperienceTile({
+    required this.name,
+    required this.companyName,
+    required this.package,
+    required this.year,
+    required this.story,
+  });
 
   @override
   Widget build(BuildContext context) {

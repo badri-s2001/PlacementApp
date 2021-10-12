@@ -123,12 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         showSpinner = false;
                       });
                       if (status == "successful") {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => WelcomeScreen(),
-                          ),
-                        );
+                        Navigator.pushNamed(context, '/welcome');
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(

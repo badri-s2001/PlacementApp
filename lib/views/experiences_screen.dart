@@ -19,6 +19,12 @@ class _ExperiencesScreenState extends State<ExperiencesScreen> {
   List<ExperienceModel> experiences = [];
 
   Future<void> getExperienceFromSheet() async {
+    _loaded = false;
+
+    if (mounted) {
+      setState(() {});
+    }
+
     var raw = await http.get(
       Uri.parse(
           "https://script.google.com/macros/s/AKfycbwjnDc_vI9YD9mExRY0nNvIBiOn8oP27xJEzQA9a9EKSk0kzNFDWl-e-6As0t47NVgD/exec"),
@@ -88,12 +94,7 @@ class _ExperiencesScreenState extends State<ExperiencesScreen> {
             Icons.add,
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const SubmitExperiencesScreen(),
-              ),
-            ).then(
+            Navigator.pushNamed(context, '/submitExperience').then(
               (_) => getExperienceFromSheet(),
             );
           }),

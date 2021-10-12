@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:placement_app/components/rounded_button.dart';
 import 'package:placement_app/models/user_model.dart';
-import 'package:placement_app/views/welcome_screen.dart';
 
 import '../constants.dart';
 
@@ -169,6 +168,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       keyboardType: TextInputType.emailAddress,
                       controller: emailController,
+                      textInputAction: TextInputAction.next,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Email is empty";
@@ -194,6 +194,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       obscureText: _obscureText,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: passwordController,
+                      textInputAction: TextInputAction.next,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Password is empty";
@@ -242,6 +243,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       keyboardType: TextInputType.name,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      textInputAction: TextInputAction.next,
                       controller: nameController,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -291,6 +293,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       keyboardType: TextInputType.phone,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      textInputAction: TextInputAction.next,
                       controller: mobileController,
                       inputFormatters: [
                         WhitelistingTextInputFormatter.digitsOnly,
@@ -345,6 +348,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       minLines: 2,
                       maxLines: 5,
                       keyboardType: TextInputType.streetAddress,
+                      textInputAction: TextInputAction.newline,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: addressController,
                       validator: (value) {
@@ -364,6 +368,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     TextFormField(
                       keyboardType: TextInputType.name,
+                      textInputAction: TextInputAction.next,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: cityController,
                       validator: (value) {
@@ -383,6 +388,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     TextFormField(
                       keyboardType: TextInputType.name,
+                      textInputAction: TextInputAction.next,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: stateController,
                       validator: (value) {
@@ -402,6 +408,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     TextFormField(
                       keyboardType: TextInputType.name,
+                      textInputAction: TextInputAction.next,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: countryController,
                       validator: (value) {
@@ -421,6 +428,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     TextFormField(
                       keyboardType: TextInputType.number,
+                      textInputAction: TextInputAction.next,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: pinCodeController,
                       inputFormatters: [
@@ -477,6 +485,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       keyboardType: TextInputType.name,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: tenthSchoolController,
+                      textInputAction: TextInputAction.next,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "10th school name is empty";
@@ -496,6 +505,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       keyboardType: TextInputType.name,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: tenthBoardController,
+                      textInputAction: TextInputAction.next,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "10th board is empty";
@@ -515,6 +525,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       keyboardType: TextInputType.number,
                       controller: tenthMarksController,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      textInputAction: TextInputAction.next,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "10th percentage is empty";
@@ -540,6 +551,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       keyboardType: TextInputType.name,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: tenthStateController,
+                      textInputAction: TextInputAction.next,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "10th State is empty";
@@ -559,6 +571,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       keyboardType: TextInputType.name,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: tenthCountryController,
+                      textInputAction: TextInputAction.next,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "10th Country is empty";
@@ -578,6 +591,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       keyboardType: TextInputType.number,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: tenthYearController,
+                      textInputAction: TextInputAction.next,
                       inputFormatters: [
                         WhitelistingTextInputFormatter.digitsOnly,
                         LengthLimitingTextInputFormatter(4),
@@ -619,6 +633,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       keyboardType: TextInputType.name,
                       controller: twelfthSchoolController,
+                      textInputAction: TextInputAction.next,
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: "12th school name (if applicable)",
                         labelText: "12th school name (if applicable)",
@@ -630,6 +645,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       keyboardType: TextInputType.name,
                       controller: twelfthBoardController,
+                      textInputAction: TextInputAction.next,
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: "12th board (if applicable)",
                         labelText: "12th board (if applicable)",
@@ -641,6 +657,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       keyboardType: TextInputType.number,
                       controller: twelfthMarksController,
+                      textInputAction: TextInputAction.next,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
                         if (value == "") {
@@ -664,6 +681,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       keyboardType: TextInputType.name,
                       controller: twelfthStateController,
+                      textInputAction: TextInputAction.next,
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: "12th State (if applicable)",
                         labelText: "12th State (if applicable)",
@@ -675,6 +693,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       keyboardType: TextInputType.name,
                       controller: twelfthCountryController,
+                      textInputAction: TextInputAction.next,
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: "12th Country (if applicable)",
                         labelText: "12th Country (if applicable)",
@@ -686,6 +705,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       keyboardType: TextInputType.number,
                       controller: twelfthYearController,
+                      textInputAction: TextInputAction.next,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       inputFormatters: [
                         WhitelistingTextInputFormatter.digitsOnly,
@@ -728,6 +748,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       keyboardType: TextInputType.name,
                       controller: diplomaInstituteController,
+                      textInputAction: TextInputAction.next,
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: "Diploma institute name (if applicable)",
                         labelText: "Diploma institute name (if applicable)",
@@ -739,6 +760,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       keyboardType: TextInputType.name,
                       controller: diplomaUniversityController,
+                      textInputAction: TextInputAction.next,
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: "Diploma University (if applicable)",
                         labelText: "Diploma University (if applicable)",
@@ -750,6 +772,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       keyboardType: TextInputType.name,
                       controller: diplomaBranchController,
+                      textInputAction: TextInputAction.next,
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: "Diploma Branch (if applicable)",
                         labelText: "Diploma Branch (if applicable)",
@@ -761,6 +784,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       keyboardType: TextInputType.number,
                       controller: diplomaMarksController,
+                      textInputAction: TextInputAction.next,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
                         if (value == "") {
@@ -784,6 +808,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       keyboardType: TextInputType.name,
                       controller: diplomaStateController,
+                      textInputAction: TextInputAction.next,
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: "Diploma State (if applicable)",
                         labelText: "Diploma State (if applicable)",
@@ -795,6 +820,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       keyboardType: TextInputType.name,
                       controller: diplomaCountryController,
+                      textInputAction: TextInputAction.next,
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: "Diploma Country (if applicable)",
                         labelText: "Diploma Country (if applicable)",
@@ -806,6 +832,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       keyboardType: TextInputType.number,
                       controller: diplomaYearController,
+                      textInputAction: TextInputAction.next,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       inputFormatters: [
                         WhitelistingTextInputFormatter.digitsOnly,
@@ -848,6 +875,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       keyboardType: TextInputType.name,
                       controller: collegeNameController,
+                      textInputAction: TextInputAction.next,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -867,6 +895,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       keyboardType: TextInputType.name,
                       controller: collegeUniversityController,
+                      textInputAction: TextInputAction.next,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -948,6 +977,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       keyboardType: TextInputType.number,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: collegeMarksController,
+                      textInputAction: TextInputAction.next,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "UG percentage is empty";
@@ -973,6 +1003,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       keyboardType: TextInputType.number,
                       controller: univRollNoController,
+                      textInputAction: TextInputAction.next,
                       inputFormatters: [
                         WhitelistingTextInputFormatter.digitsOnly,
                       ],
@@ -994,6 +1025,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       keyboardType: TextInputType.number,
+                      textInputAction: TextInputAction.next,
                       controller: standingArrearController,
                       inputFormatters: [
                         WhitelistingTextInputFormatter.digitsOnly,
@@ -1047,6 +1079,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       keyboardType: TextInputType.name,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      textInputAction: TextInputAction.next,
                       controller: collegeStateController,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -1066,6 +1099,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       keyboardType: TextInputType.name,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      textInputAction: TextInputAction.next,
                       controller: collegeCountryController,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -1085,6 +1119,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       keyboardType: TextInputType.number,
+                      textInputAction: TextInputAction.next,
                       controller: collegeYearController,
                       inputFormatters: [
                         WhitelistingTextInputFormatter.digitsOnly,
@@ -1115,6 +1150,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       keyboardType: TextInputType.url,
+                      textInputAction: TextInputAction.done,
                       controller: resumeLinkController,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -1155,12 +1191,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 backgroundColor: Colors.green,
                               ),
                             );
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const WelcomeScreen(),
-                              ),
-                            );
+                            Navigator.pushNamed(context, '/register');
                             setState(() {
                               showSpinner = false;
                             });
