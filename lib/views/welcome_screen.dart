@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:placement_app/components/company_tile.dart';
-import 'package:placement_app/components/rounded_button.dart';
 import 'package:placement_app/models/company_model.dart';
 import 'package:placement_app/models/user_model.dart';
 import 'package:http/http.dart' as http;
@@ -42,7 +41,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
     var raw = await http.get(
       Uri.parse(
-          "https://script.google.com/macros/s/AKfycbwzPjhRdoL27Lnn5c39nDuCXOPWbEiQToHCDplOvGoqitG_JtqwwlW6GZIBBSFcfXXE/exec"),
+          "https://script.google.com/macros/s/AKfycby9STefcAgsu_pnpLvW4UAdqul69HDobpkO04iU1RWlp7Qhhc1YiPKjZrEXuKY0zMXU/exec"),
     );
 
     companies.clear();
@@ -79,6 +78,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           company.applyBefore == "" ||
           company.apiLink == "") {
         eligibility = false;
+        return;
       }
 
       if (!company.departments.contains(RegExp(loggedInUser.collegeBranch!))) {

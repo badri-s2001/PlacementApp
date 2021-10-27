@@ -55,6 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
                   controller: emailController,
+                  textInputAction: TextInputAction.next,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -79,6 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 TextFormField(
                   obscureText: _obscureText,
                   controller: passwordController,
+                  textInputAction: TextInputAction.done,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -156,8 +158,8 @@ class _LoginScreenState extends State<LoginScreen> {
       } else {
         _status = "Error undefined";
       }
-    } catch (e) {
-      _status = e.toString();
+    } on FirebaseAuthException catch (e) {
+      _status = e.message.toString();
     }
     return _status;
   }

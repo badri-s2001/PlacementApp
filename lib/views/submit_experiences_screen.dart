@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:placement_app/components/rounded_button.dart';
@@ -70,6 +71,8 @@ class _SubmitExperiencesScreenState extends State<SubmitExperiencesScreen> {
                   TextFormField(
                     keyboardType: TextInputType.text,
                     controller: nameController,
+                    textInputAction: TextInputAction.next,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Enter Valid name";
@@ -86,6 +89,8 @@ class _SubmitExperiencesScreenState extends State<SubmitExperiencesScreen> {
                   ),
                   TextFormField(
                     controller: companyNameController,
+                    textInputAction: TextInputAction.next,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Enter Valid company";
@@ -103,11 +108,19 @@ class _SubmitExperiencesScreenState extends State<SubmitExperiencesScreen> {
                   TextFormField(
                     keyboardType: TextInputType.number,
                     controller: packageController,
+                    textInputAction: TextInputAction.next,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Enter Valid package";
+                        return "Package is empty";
                       } else {
-                        return null;
+                        if (!RegExp(
+                          r'^([0-9]+\.?[0-9]*)$',
+                        ).hasMatch(value)) {
+                          return "At least 1 upper 1 lower 1 special 1 digit. 8 chars min";
+                        } else {
+                          return null;
+                        }
                       }
                     },
                     decoration: kTextFieldDecoration.copyWith(
@@ -120,11 +133,24 @@ class _SubmitExperiencesScreenState extends State<SubmitExperiencesScreen> {
                   TextFormField(
                     keyboardType: TextInputType.number,
                     controller: yearController,
+                    textInputAction: TextInputAction.next,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    inputFormatters: [
+                      WhitelistingTextInputFormatter.digitsOnly,
+                      LengthLimitingTextInputFormatter(4),
+                      BlacklistingTextInputFormatter.singleLineFormatter
+                    ],
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Enter Valid Year";
+                        return "Year is empty";
                       } else {
-                        return null;
+                        if (!RegExp(
+                          r'^\d{4}$',
+                        ).hasMatch(value)) {
+                          return "Invalid Year";
+                        } else {
+                          return null;
+                        }
                       }
                     },
                     decoration: kTextFieldDecoration.copyWith(
@@ -138,6 +164,8 @@ class _SubmitExperiencesScreenState extends State<SubmitExperiencesScreen> {
                     minLines: 10,
                     maxLines: 20,
                     controller: storyController,
+                    textInputAction: TextInputAction.done,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Enter Valid Story";

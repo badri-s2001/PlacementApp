@@ -210,6 +210,8 @@ class _DetailedCompanyScreenState extends State<DetailedCompanyScreen> {
   }
 
   Future<void> applyNow() async {
+    _loaded = false;
+    setState(() {});
     Map<String, dynamic> body = widget.loggedInUser.toMap();
     var response = await http.post(
       Uri.parse(widget.apiLink),

@@ -1231,8 +1231,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
       } else {
         _status = "Error undefined";
       }
-    } catch (e) {
-      _status = e.toString();
+    } on FirebaseAuthException catch (e) {
+      _status = e.message.toString();
     }
     return _status;
   }
